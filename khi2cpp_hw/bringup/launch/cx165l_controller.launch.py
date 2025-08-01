@@ -39,8 +39,9 @@ def generate_launch_description():
             " ",
             PathJoinSubstitution(
                 [
-                    FindPackageShare("snp_isu_support"),
-                    "urdf/workcell.xacro",
+                    FindPackageShare("khi2cpp_hw_description"),
+                    "cx165l/urdf",
+                    "cx165l.urdf.xacro",
                 ]
             ),
         ]
