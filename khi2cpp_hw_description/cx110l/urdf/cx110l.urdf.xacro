@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro" name="cx110l">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="cx110l" xmlns:tesseract="https://github.com/tesseract" tesseract:make_convex="False">
 
   <xacro:property name="robot_name" value="cx110l"/>
   <xacro:property name="krnx_name" value="CX110L-BC01"/>

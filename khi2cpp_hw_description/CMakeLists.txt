@@ -4,7 +4,7 @@ project(khi2cpp_hw_description)
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY launch ros2_control common
+  DIRECTORY launch ros2_control common config
   DESTINATION share/${PROJECT_NAME}
 )
 
