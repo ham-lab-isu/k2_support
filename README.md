@@ -1,4 +1,4 @@
-# khi2cpp_hw
+# k2_support
 Engineers pretending to be software devs
 
 ROS2 Humble Driver for Kawasaki Robotics CX-series robots equipped with KRNX API for programmatic control.
