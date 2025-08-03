@@ -59,12 +59,6 @@ Visualization Manager:
           Value: true
         base_plate_cx110l:
           Value: true
-        base_plate_cx165l:
-          Value: true
-        east_wall:
-          Value: true
-        floor:
-          Value: true
         link_1:
           Value: true
         link_2:
@@ -77,15 +71,7 @@ Visualization Manager:
           Value: true
         link_6:
           Value: true
-        north_wall:
-          Value: true
-        pushcorp:
-          Value: true
-        south_wall:
-          Value: true
         tool0:
-          Value: true
-        west_wall:
           Value: true
         world:
           Value: true
@@ -103,22 +89,9 @@ Visualization Manager:
                   link_4:
                     link_5:
                       link_6:
-                        pushcorp:
-                          tool0:
-                            {}
+                        tool0:
+                          {}
           base_plate_cx110l:
-            {}
-          base_plate_cx165l:
-            {}
-          east_wall:
-            {}
-          floor:
-            {}
-          north_wall:
-            {}
-          south_wall:
-            {}
-          west_wall:
             {}
       Update Interval: 0
       Value: true
@@ -150,21 +123,6 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-        base_plate_cx165l:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        east_wall:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        floor:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         link_1:
           Alpha: 1
           Show Axes: false
@@ -191,30 +149,6 @@ Visualization Manager:
           Show Trail: false
           Value: true
         link_6:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        north_wall:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        pushcorp:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        south_wall:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
-        tool0:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-        west_wall:
           Alpha: 1
           Show Axes: false
           Show Trail: false

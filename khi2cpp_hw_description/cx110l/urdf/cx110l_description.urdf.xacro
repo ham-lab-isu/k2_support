@@ -2,6 +2,7 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:macro name="cx110l_description">
+  <xacro:include filename="$(find khi2cpp_hw_description)/cx110l/tools/tool_macro.xacro"/>
 
   <!-- link mass [kg] -->
   <!-- CURRENTLY ESIMATES - NEED DATA FROM KAWASAKI -->
@@ -12,19 +13,18 @@
   <xacro:property name="j4_mass" value="109"/>
   <xacro:property name="j5_mass" value="72"/>
   <xacro:property name="j6_mass" value="3"/>
-  <xacro:property name="pushcorp_mass" value="30"/>
 
   <!-- joint limits [rad] -->
-  <xacro:property name="j1_lower_limit" value="${radians( 0 )}"/>
-  <xacro:property name="j1_upper_limit" value="${radians( 90 )}"/>
-  <xacro:property name="j2_lower_limit" value="${radians(-80 )}"/>
-  <xacro:property name="j2_upper_limit" value="${radians( 36 )}"/>
-  <xacro:property name="j3_lower_limit" value="${radians(-75 )}"/>
-  <xacro:property name="j3_upper_limit" value="${radians( 0 )}"/>
-  <xacro:property name="j4_lower_limit" value="${radians(-210)}"/>
-  <xacro:property name="j4_upper_limit" value="${radians( 210)}"/>
-  <xacro:property name="j5_lower_limit" value="${radians(-120)}"/>
-  <xacro:property name="j5_upper_limit" value="${radians( 120)}"/>
+  <xacro:property name="j1_lower_limit" value="${radians( -360)}"/>
+  <xacro:property name="j1_upper_limit" value="${radians( 360 )}"/>
+  <xacro:property name="j2_lower_limit" value="${radians(-360 )}"/>
+  <xacro:property name="j2_upper_limit" value="${radians( 360 )}"/>
+  <xacro:property name="j3_lower_limit" value="${radians(-360)}"/>
+  <xacro:property name="j3_upper_limit" value="${radians( 360 )}"/>
+  <xacro:property name="j4_lower_limit" value="${radians(-360)}"/>
+  <xacro:property name="j4_upper_limit" value="${radians( 360)}"/>
+  <xacro:property name="j5_lower_limit" value="${radians(-360)}"/>
+  <xacro:property name="j5_upper_limit" value="${radians( 360)}"/>
   <xacro:property name="j6_lower_limit" value="${radians(-360)}"/>
   <xacro:property name="j6_upper_limit" value="${radians( 360)}"/>
 
@@ -35,6 +35,9 @@
   <xacro:property name="j4_velocity_limit" value="${radians(180)}"/>
   <xacro:property name="j5_velocity_limit" value="${radians(180)}"/>
   <xacro:property name="j6_velocity_limit" value="${radians(280)}"/>
+
+  <xacro:property name="tool_length" value="0.1"/>
+  <xacro:property name="tool_radius" value="${tool_length/2}"/>
 
   <link name="base_link">
     <visual>
@@ -175,34 +178,23 @@
     </collision>
     <xacro:default_inertial mass="${j6_mass}"/>
   </link>
-  
-  <link name="pushcorp">
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-pushcorp.dae"/>
-      </geometry>
-      <material
-        name="">
-        <color rgba="0.75294 0.75294 0.75294 1" />
-      </material>
-    </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-pushcorp.stl"/>
-      </geometry>
-    </collision>
-    <xacro:default_inertial mass="${pushcorp_mass}"/>
-  </link>
 
-  <link name="tool0"/>
+  <link name="tool0" />
+  <joint name="tool0_joint" type="fixed">
+    <parent link="link_6"/>
+    <child link="tool0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  
+
+  
+
 
   <!-- base_joint fixes base_link to the environment -->
   <joint name="base_joint" type="fixed">
     <parent link="world"/>
     <child link="base_link"/>
-    <origin xyz="-5.0546 0 0.0254" rpy="0 0 0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
     <axis xyz="0 0 -1"/>
   </joint>
 
@@ -255,17 +247,21 @@
     <limit effort="1000.0" lower="${j6_lower_limit}" upper="${j6_upper_limit}" velocity="${j6_velocity_limit}"/>
   </joint>
 
-  <joint name="pushcorp" type="fixed">
-    <parent link="link_6"/>
-    <child link="pushcorp"/>
-      <origin xyz="0 0.0949325000000025 0" rpy="0 1.5707963267949 0" />
+  <joint name="tool_joint" type="fixed">
+    <parent link="tool0"/>
+    <child link="tool_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
 
-  <joint name="joint-tool" type="fixed">
-    <parent link="pushcorp"/>
-    <child link="tool0"/>
-    <origin xyz="0 0 .185" rpy="0 0 0"/>
+  <link name="tcp_link">
+  </link>
+  <joint name="tcp_joint" type="fixed">
+    <parent link="tool_link"/>
+    <child link="tcp_link"/>
+    <origin xyz="0 ${tool_length} 0" rpy="0 0 0"/>
   </joint>
+
+
 
 </xacro:macro>
 

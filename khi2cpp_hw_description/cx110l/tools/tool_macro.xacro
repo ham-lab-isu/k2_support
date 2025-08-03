@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+    <xacro:property name="tool_width" value="0.1"/>
+    <xacro:property name="tool_height" value="0.1"/>
+    <xacro:property name="tool_radius" value="${tool_width/2}"/>
+    <xacro:property name="tool_origin_xyz" value="0 ${tool_height/2} 0"/> 
+    <xacro:property name="tool_origin_rpy" value="${pi / 2} 0 0"/>
+
+    <link name="tool_link">
+      <visual>
+        <origin
+                xyz="${tool_origin_xyz}"
+                rpy="${tool_origin_rpy}" />
+        <geometry>
+          <cylinder length="${tool_height}" radius="${tool_radius}"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin
+                xyz="${tool_origin_xyz}"
+                rpy="${tool_origin_rpy}" />
+        <geometry>
+         <cylinder length="${tool_height}" radius="${tool_radius}"/>
+       </geometry>
+      </collision>
+    </link>
+</robot>

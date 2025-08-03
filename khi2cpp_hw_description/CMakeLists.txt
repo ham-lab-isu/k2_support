@@ -9,7 +9,7 @@ install(
 )
 
 install(
-  DIRECTORY cx110l/urdf cx110l/srdf cx110l/rviz cx110l/meshes
+  DIRECTORY cx110l/urdf cx110l/srdf cx110l/rviz cx110l/meshes cx110l/tools
   DESTINATION share/${PROJECT_NAME}/cx110l
 )
 
