@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://wiki.ros.org/xacro" name="cx165l">
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="cx165l" xmlns:tesseract="https://github.com/tesseract" tesseract:make_convex="False">
 
   <xacro:property name="robot_name" value="cx165l"/>
   <xacro:property name="krnx_name" value="CX165L-BC01"/>
@@ -16,7 +16,8 @@
   <xacro:cx165l_description/>
 
   <!-- Import cx110l ros2_control description -->
+  <xacro:arg name="sim" default="false"/>
   <xacro:include filename="$(find khi2cpp_hw_description)/ros2_control/${robot_name}.ros2_control.xacro" />
-  <xacro:cx165l_ros2_control name="${krnx_name}"/>
+  <xacro:cx165l_ros2_control name="${krnx_name}" sim="$(arg sim)"/>
 
 </robot>
