@@ -35,7 +35,6 @@ set(CONTROLLER_INCLUDE_DEPENDS
 find_package(controller_manager REQUIRED)
 find_package(backward_ros REQUIRED)
 find_package(ament_cmake REQUIRED)
-find_package(khi2cpp_hw_description REQUIRED)
 
 foreach(Dependency IN ITEMS ${HW_IF_INCLUDE_DEPENDS})
   find_package(${Dependency} REQUIRED)
@@ -52,6 +51,19 @@ include_directories(
   include
   ${ament_INCLUDE_DIRS}
 )
+
+
+if(BUILD_TESTING)
+  find_package(ament_lint_auto REQUIRED)
+  # the following line skips the linter which checks for copyrights
+  # comment the line when a copyright and license is added to all source files
+  set(ament_cmake_copyright_FOUND TRUE)
+  # the following line skips cpplint (only works in a git repo)
+  # comment the line when this package is in a git repo and when
+  # a copyright and license is added to all source files
+  set(ament_cmake_cpplint_FOUND TRUE)
+  ament_lint_auto_find_test_dependencies()
+endif()
 
 # add an executable, target the dependencies
 add_executable(main src/main.cpp src/khi_krnx_driver.cpp)
@@ -95,7 +107,6 @@ else()
 endif()
 
 # This defines the library variable krnx_LIBRARIES which can then be called as ${krnx_LIBRARIES}
-message("Project source directory: ${PROJECT_SOURCE_DIR}")
 find_library(krnx_LIBRARIES libkrnx.so PATHS ${PROJECT_SOURCE_DIR}/lib/${krnx_arch})
 find_library(krnx2_LIBRARIES libkrnx.so.2 PATHS ${PROJECT_SOURCE_DIR}/lib/${krnx_arch})
 
