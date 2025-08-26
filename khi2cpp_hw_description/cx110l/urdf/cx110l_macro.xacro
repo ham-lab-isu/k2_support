@@ -100,6 +100,20 @@
         </geometry>
       </collision>
     </link>
+    <link name="${prefix}lwded_tool_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/lwded_tool.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/lwded_tool_convex_hull.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
     <link name="${prefix}tcp_link" />
     <!-- end of link list -->
 
@@ -146,9 +160,15 @@
       <axis xyz="0 1 0"/>
       <limit effort="0" lower="-6.283185" upper="6.283185" velocity="4.886922"/>
     </joint>
-    <joint name="${prefix}joint_6-tcp_link" type="fixed">
-      <origin xyz="0 0 0.126" rpy="0 0 0" />
+    <joint name="${prefix}joint_6-lwded_tool_link" type="fixed">
+      <origin xyz="0 0.192 -0.387" rpy="0 0 0" />
       <parent link="${prefix}link_6" />
+      <child link="${prefix}lwded_tool_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+    <joint name="${prefix}lwded_tool_link-tcp_link" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <parent link="${prefix}lwded_tool_link" />
       <child link="${prefix}tcp_link" />
       <axis xyz="0 0 0" />
     </joint>
