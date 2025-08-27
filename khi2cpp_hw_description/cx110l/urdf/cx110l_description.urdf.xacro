@@ -15,18 +15,18 @@
   <xacro:property name="j6_mass" value="3"/>
 
   <!-- joint limits [rad] -->
-  <xacro:property name="j1_lower_limit" value="${radians( -360)}"/>
-  <xacro:property name="j1_upper_limit" value="${radians( 360 )}"/>
-  <xacro:property name="j2_lower_limit" value="${radians(-360 )}"/>
-  <xacro:property name="j2_upper_limit" value="${radians( 360 )}"/>
-  <xacro:property name="j3_lower_limit" value="${radians(-360)}"/>
-  <xacro:property name="j3_upper_limit" value="${radians( 360 )}"/>
-  <xacro:property name="j4_lower_limit" value="${radians(-360)}"/>
-  <xacro:property name="j4_upper_limit" value="${radians( 360)}"/>
-  <xacro:property name="j5_lower_limit" value="${radians(-360)}"/>
-  <xacro:property name="j5_upper_limit" value="${radians( 360)}"/>
-  <xacro:property name="j6_lower_limit" value="${radians(-360)}"/>
-  <xacro:property name="j6_upper_limit" value="${radians( 360)}"/>
+  <xacro:property name="j1_lower_limit" value="${radians( 0 )}"/>
+  <xacro:property name="j1_upper_limit" value="${radians( 90 )}"/>
+  <xacro:property name="j2_lower_limit" value="${radians(-80 )}"/>
+  <xacro:property name="j2_upper_limit" value="${radians( 36 )}"/>
+  <xacro:property name="j3_lower_limit" value="${radians( -75 )}"/>
+  <xacro:property name="j3_upper_limit" value="${radians( 0 )}"/>
+  <xacro:property name="j4_lower_limit" value="${radians( -210 )}"/>
+  <xacro:property name="j4_upper_limit" value="${radians( 210 )}"/>
+  <xacro:property name="j5_lower_limit" value="${radians( -120 )}"/>
+  <xacro:property name="j5_upper_limit" value="${radians( 120 )}"/>
+  <xacro:property name="j6_lower_limit" value="${radians( -360 )}"/>
+  <xacro:property name="j6_upper_limit" value="${radians( 360 )}"/>
 
   <!-- joint velocity limits [rad/s] -->
   <xacro:property name="j1_velocity_limit" value="${radians(130)}"/>
