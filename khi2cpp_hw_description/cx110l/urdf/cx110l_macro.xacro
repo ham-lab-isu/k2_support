@@ -156,9 +156,120 @@
      <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/lwded_tool_convex_hull.stl" scale="0.001 0.001 0.001"/>
+             <box size="${table_x} ${table_y} ${table_z}"/>
+         </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}lwded_cables_link">
+     <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+         <geometry>
+            <cylinder radius="0.0635" length="3.0"/>
+         </geometry>
+         <material
+          name="">
+          <color
+          rgba="${1/255} ${1/255} ${1/255} 1" />
+        </material>
+     </visual>
+     <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <cylinder radius="0.0635" length="3.0"/>
         </geometry>
       </collision>
+    </link>
+    <link name="${prefix}north_wall">
+        <visual>
+            <origin
+                xyz="5.878 1.7175 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.1 5.055 5" />
+            </geometry>
+            <material
+                name="">
+                <color
+                rgba="0.75294 0.75294 0.75294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="5.878 1.7175 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.1 5.055 5" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="${prefix}east_wall">
+        <visual>
+            <origin
+                xyz="2.53 -0.81 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="6.68 0.1 5" />
+            </geometry>
+            <material
+                name="">
+                <color
+                rgba="0.75294 0.75294 0.75294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="-2.53 -0.81 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="6.68 0.1 5" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="${prefix}south_wall">
+        <visual>
+            <origin
+                xyz="-0.810 1.717 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.1 5.055 5" />
+            </geometry>
+            <material
+                name="">
+                <color
+                rgba="0.75294 0.75294 0.75294 0.1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="-0.810 1.717 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="0.1 5.055 5" />
+            </geometry>
+        </collision>
+    </link>
+    <link name="${prefix}west_wall">
+        <visual>
+            <origin
+                xyz="2.53 4.245 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="6.68 0.1 5" />
+            </geometry>
+            <material
+                name="">
+                <color
+                rgba="0.75294 0.75294 0.75294 0.1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+                xyz="-2.53 4.245 2.5"
+                rpy="0 0 0" />
+            <geometry>
+                <box size="6.68 0.1 5" />
+            </geometry>
+        </collision>
     </link>
     <!-- end of link list -->
 
@@ -224,18 +335,43 @@
       <child link="${prefix}tcp_link" />
       <axis xyz="0 0 0" />
     </joint>
+    <joint name="${prefix}lwded_tool_link-lwded_cables_link" type="fixed">
+      <origin xyz="0 0 2.3" rpy="0 0 0" />
+      <parent link="${prefix}lwded_tool_link" />
+      <child link="${prefix}lwded_cables_link" />
+      <axis xyz="0 0 0" />
+    </joint>
     <joint name="${prefix}base_plate_link-table_link" type="fixed">
       <origin xyz="${table_x/2 + 0.6668 + 0.508} ${table_y/2+0.2} ${table_z/2}" rpy="0 0 0" />
       <parent link="${prefix}base_plate_link" />
       <child link="${prefix}table_link" />
       <axis xyz="0 0 0" />
     </joint>
-
     <link name="${prefix}slicer_link" />
     <joint name="${prefix}table_link-slicer_link" type="fixed">
       <origin xyz="${-table_x/2} ${-table_y/2} ${table_z/2}" rpy="0 0 0"/>
       <parent link="${prefix}table_link"/>
       <child link="${prefix}slicer_link"/>
+    </joint>
+    <joint name="${prefix}world2north_wall" type="fixed">
+        <parent link="base_link"/>
+        <child link="${prefix}north_wall"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    <joint name="${prefix}world2east_wall" type="fixed">
+        <parent link="base_link"/>
+        <child link="${prefix}east_wall"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    <joint name="${prefix}world2south_wall" type="fixed">
+        <parent link="base_link"/>
+        <child link="${prefix}south_wall"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    <joint name="${prefix}world2west_wall" type="fixed">
+        <parent link="base_link"/>
+        <child link="${prefix}west_wall"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
     </joint>
 
     <!-- end of joint list -->
