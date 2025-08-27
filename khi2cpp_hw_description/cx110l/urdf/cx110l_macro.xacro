@@ -156,8 +156,8 @@
      <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-          <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/lwded_tool_convex_hull.stl" scale="0.001 0.001 0.001"/>
-        </geometry>
+             <box size="${table_x} ${table_y} ${table_z}"/>
+         </geometry>
       </collision>
     </link>
     <!-- end of link list -->
