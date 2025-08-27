@@ -2,6 +2,9 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:macro name="cx110l" params="prefix">
     <!-- link list -->
+    <xacro:property name="table_x" value="1.5177" />
+    <xacro:property name="table_y" value="0.762" />
+    <xacro:property name="table_z" value="0.7302" />
     <link name="${prefix}base_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -13,6 +16,29 @@
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
           <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-base.stl" />
+        </geometry>
+      </collision>
+    </link>
+    <link name="${prefix}base_plate_link">
+      <visual>
+        <origin
+          xyz="0 0 0.0127"
+          rpy="0 0 0" />
+        <geometry>
+          <box size="1.016 1.016 0.0254" />
+        </geometry>
+        <material
+          name="">
+          <color
+          rgba="0.75294 0.75294 0.75294 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin
+            xyz="0 0 0.0127"
+            rpy="0 0 0" />
+        <geometry>
+            <box size="1.016 1.016 0.0254" />
         </geometry>
       </collision>
     </link>
@@ -115,9 +141,35 @@
       </collision>
     </link>
     <link name="${prefix}tcp_link" />
+    <link name="${prefix}table_link">
+     <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+         <geometry>
+             <box size="${table_x} ${table_y} ${table_z}"/>
+         </geometry>
+         <material
+          name="">
+          <color
+          rgba="${19/255} ${115/255} ${28/255} 1" />
+        </material>
+     </visual>
+     <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/lwded_tool_convex_hull.stl" scale="0.001 0.001 0.001"/>
+        </geometry>
+      </collision>
+    </link>
     <!-- end of link list -->
 
     <!-- joint list -->
+    <joint name="${prefix}base_link-base_plate_link" type="fixed">
+      <origin rpy="0 0 0" xyz="0 0 0.0254"/>
+      <parent link="${prefix}base_plate_link" />
+      <child link="${prefix}base_link" />
+      <axis xyz="0 0 -1"/>
+      <limit effort="0" lower="-6.283185" upper="6.283185" velocity="2.268928"/>
+    </joint>
     <joint name="${prefix}joint_1" type="revolute">
       <origin rpy="0 0 0" xyz="0 0 0.55"/>
       <parent link="${prefix}base_link" />
@@ -172,6 +224,20 @@
       <child link="${prefix}tcp_link" />
       <axis xyz="0 0 0" />
     </joint>
+    <joint name="${prefix}base_plate_link-table_link" type="fixed">
+      <origin xyz="${table_x/2 + 0.6668 + 0.508} ${table_y/2+0.2} ${table_z/2}" rpy="0 0 0" />
+      <parent link="${prefix}base_plate_link" />
+      <child link="${prefix}table_link" />
+      <axis xyz="0 0 0" />
+    </joint>
+
+    <link name="${prefix}slicer_link" />
+    <joint name="${prefix}table_link-slicer_link" type="fixed">
+      <origin xyz="${-table_x/2} ${-table_y/2} ${table_z/2}" rpy="0 0 0"/>
+      <parent link="${prefix}table_link"/>
+      <child link="${prefix}slicer_link"/>
+    </joint>
+
     <!-- end of joint list -->
 
     <!-- ROS base_link to cx110l coordinate system transform -->
