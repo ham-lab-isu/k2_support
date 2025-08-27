@@ -8,14 +8,12 @@
   <xacro:include filename="$(find khi2cpp_hw_description)/${robot_name}/urdf/cx110l_macro.xacro"/>
   <xacro:cx110l prefix=""/>
 
-  <!-- Import Lab Robot Cell -->
-  <!--   <xacro:include filename="$(find khi2cpp_hw_description)/common/isu_lab.xacro" />
-
-  <xacro:cx110l_description/> -->
 
   <!-- Import cx110l ros2_control description -->
   <xacro:arg name="sim" default="true"/>
   <xacro:include filename="$(find khi2cpp_hw_description)/ros2_control/${robot_name}.ros2_control.xacro" />
   <xacro:cx110l_ros2_control name="${krnx_name}" sim="$(arg sim)"/>
+
+  
 
 </robot>
