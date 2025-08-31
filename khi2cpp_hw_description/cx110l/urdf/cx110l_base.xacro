@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<robot
+	xmlns:xacro="http://wiki.ros.org/xacro">
+	<xacro:macro name="cx110l" params="prefix">
+		<!-- link list -->
+		<link name="${prefix}base_link">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-base.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-base.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}base_plate_link">
+			<visual>
+				<origin
+          xyz="0 0 -0.0254"
+          rpy="0 0 0" />
+				<geometry>
+					<box size="1.016 1.016 0.0254" />
+				</geometry>
+				<material
+          name="">
+					<color
+          rgba="0.75294 0.75294 0.75294 1" />
+				</material>
+			</visual>
+			<collision>
+				<origin
+            xyz="0 0 0.0127"
+            rpy="0 0 0" />
+				<geometry>
+					<box size="1.016 1.016 0.0254" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}link_1">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-j1.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-j1.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}link_2">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-j2.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-j2.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}link_3">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-j3.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-j3.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}link_4">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-j4.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-j4.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}link_5">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-j5.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-j5.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}link_6">
+			<visual>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/visual/cx165l-j6.dae" />
+				</geometry>
+			</visual>
+			<collision>
+				<origin xyz="0 0 0" rpy="0 0 0" />
+				<geometry>
+					<mesh filename="package://khi2cpp_hw_description/cx110l/meshes/collision/cx165l-j6.stl" />
+				</geometry>
+			</collision>
+		</link>
+		<link name="${prefix}flange_link" />
+		<!-- end of link list -->
+
+		<!-- joint list -->
+		<joint name="${prefix}base_link-base_plate_link" type="fixed">
+			<origin rpy="0 0 0" xyz="0 0 0.0254"/>
+			<parent link="${prefix}base_link" />
+			<child link="${prefix}base_plate_link" />
+			<axis xyz="0 0 -1"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="2.268928"/>
+		</joint>
+		<joint name="${prefix}joint_1" type="revolute">
+			<origin rpy="0 0 0" xyz="0 0 0.55"/>
+			<parent link="${prefix}base_link" />
+			<child link="${prefix}link_1" />
+			<axis xyz="0 0 -1"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="2.268928"/>
+		</joint>
+		<joint name="${prefix}joint_2" type="revolute">
+			<origin rpy="0 0 0" xyz="0 0.3 0"/>
+			<parent link="${prefix}link_1" />
+			<child link="${prefix}link_2" />
+			<axis xyz="1 0 0"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="2.181662"/>
+		</joint>
+		<joint name="${prefix}joint_3" type="revolute">
+			<origin rpy="0 0 0" xyz="0 0 1.19"/>
+			<parent link="${prefix}link_2" />
+			<child link="${prefix}link_3" />
+			<axis xyz="1 0 0"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="2.181662"/>
+		</joint>
+		<joint name="${prefix}joint_4" type="revolute">
+			<origin rpy="0 0 0" xyz="0 1.19 0.3"/>
+			<parent link="${prefix}link_3" />
+			<child link="${prefix}link_4" />
+			<axis xyz="0 1 0"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="3.141593"/>
+		</joint>
+		<joint name="${prefix}joint_5" type="revolute">
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<parent link="${prefix}link_4" />
+			<child link="${prefix}link_5" />
+			<axis xyz="1 0 0"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="3.141593"/>
+		</joint>
+		<joint name="${prefix}joint_6" type="revolute">
+			<origin rpy="0 0 0" xyz="0 0.235 0"/>
+			<parent link="${prefix}link_5" />
+			<child link="${prefix}link_6" />
+			<axis xyz="0 1 0"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="4.886922"/>
+		</joint>
+        <joint name="${prefix}joint_6-flange" type="revolute">
+			<origin rpy="0 0 0" xyz="0 0.235 0"/>
+			<parent link="${prefix}link_6" />
+			<child link="${prefix}flange_link" />
+			<axis xyz="0 1 0"/>
+			<limit effort="0" lower="-6.283185" upper="6.283185" velocity="4.886922"/>
+		</joint>
+		<!-- end of joint list -->
+		<!-- ROS base_link to cx110l coordinate system transform -->
+		<link name="${prefix}base" />
+		<joint name="${prefix}base_link-base" type="fixed">
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<parent link="${prefix}base_link"/>
+			<child link="${prefix}base"/>
+		</joint>
+	</xacro:macro>
+</robot>

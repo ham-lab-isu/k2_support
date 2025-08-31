@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Station (fixed in world) -->
+    <link name="toolA_station"/>
+    <joint name="toolA_station_to_world" type="fixed">
+        <parent link="world"/>
+        <child  link="toolA_station"/>
+        <origin xyz="1.200 0.450 0.900" rpy="0 0 0"/> <!-- measured -->
+    </joint>
+
+    <!-- Tool geometry -->
+    <link name="toolA_root"> ... inertial/visual/collision ... </link>
+
+    <!-- Tool parked on its station -->
+    <joint name="toolA_root_to_station" type="fixed">
+        <parent link="toolA_station"/>
+        <child  link="toolA_root"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Tool TCP frame -->
+    <link name="toolA_tcp"/>
+    <joint name="toolA_tcp_joint" type="fixed">
+        <parent link="toolA_root"/>
+        <child  link="toolA_tcp"/>
+        <origin xyz="0.000 0.000 0.120" rpy="0 0 0"/> <!-- mount->TCP calib -->
+    </joint>
+    
+</robot>
