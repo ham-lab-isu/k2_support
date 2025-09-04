@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="cx110l_description">
+  <xacro:include filename="$(find khi2cpp_hw_description)/cx110l/tools/tool_macro.xacro"/>
+
+    <link name="${prefix}tool_mag_base_link">
+        <visual>
+            <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+            <geometry>
+                <box size="1.0 2.0 0.5" />
+            </geometry>
+            <material
+        name="">
+                <color
+        rgba="0.75294 0.75294 0.75294 1" />
+            </material>
+        </visual>
+        <collision>
+            <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+            <geometry>
+                <box size="1.0 2.0 0.5" />
+            </geometry>
+        </collision>
+    </link>
+
+  <link name="link_tool_1">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+    </collision>
+    <xacro:default_inertial mass="${j1_mass}"/>
+  </link>
+
+  <link name="link_tool_2">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+    </collision>
+    <xacro:default_inertial mass="${j2_mass}"/>
+  </link>
+
+  <link name="link_tool_3">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+    </collision>
+    <xacro:default_inertial mass="${j3_mass}"/>
+  </link>
+  <link name="link_tool_4">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://khi2cpp_hw_description/cx110l/tools/meshes/magazine_tool_slot.stl"/>
+      </geometry>
+    </collision>
+    <xacro:default_inertial mass="${j3_mass}"/>
+  </link>
+
+  <link name="tool0" />
+  <joint name="tool0_joint" type="fixed">
+    <parent link="link_6"/>
+    <child link="tool0"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+  
+  <!-- base_joint fixes base_link to the environment -->
+  <joint name="base_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+  </joint>
+
+  <!-- joints - main serial chain -->
+  <joint name="joint_1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link_1"/>
+    <origin xyz="0 0 0.55" rpy="0 0 0"/>
+    <axis xyz="0 0 -1"/>
+    <limit effort="1000.0" lower="${j1_lower_limit}" upper="${j1_upper_limit}" velocity="${j1_velocity_limit}"/>
+  </joint>
+
+  <joint name="joint_2" type="revolute">
+    <parent link="link_1"/>
+    <child link="link_2"/>
+    <origin xyz="0 0.3 0" rpy="0 0 0"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="1000.0" lower="${j2_lower_limit}" upper="${j2_upper_limit}" velocity="${j2_velocity_limit}"/>
+  </joint>
+</xacro:macro>
+
+</robot>
